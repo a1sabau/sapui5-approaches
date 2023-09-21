@@ -1,0 +1,117 @@
+{
+    "_version": "1.12.0",
+
+    "sap.app": {
+        "id": "com.asabau.freestyle",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "ach": "set-ach",
+        "dataSources": {
+            "mainService": {
+                "uri": "/browse/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "4.0"
+                }
+            }
+        }
+    },
+
+    "sap.fiori": {},
+
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {},
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+
+    "sap.ui5": {
+        "rootView": {
+            "viewName": "com.asabau.freestyle.view.App",
+            "type": "XML",
+            "async": true,
+            "id": "app"
+        },
+
+        "dependencies": {
+            "minUI5Version": "1.104.0",
+            "libs": {
+                "sap.ui.core": {},
+                "sap.ui.layout": {},
+                "sap.ui.unified": {},
+                "sap.m": {}
+            }
+        },
+
+        "handleValidation": true,
+
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+
+        "models": {
+            "": {
+                "dataSource": "mainService",
+                "settings": {}
+            },
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "com.asabau.freestyle.i18n.i18n",
+                    "supportedLocales": ["en", ""]
+                }
+            },
+            "i18nBooks": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "com.asabau.freestyle.i18n.i18nBooks",
+                    "supportedLocales": ["en", ""]
+                }
+            }
+        },
+
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "path": "com.asabau.freestyle.view",
+                "controlId": "app",
+                "controlAggregation": "pages",
+                "type": "View",
+                "viewType": "XML",
+                "async": true
+            },
+            "routes": [
+                {
+                    "name": "books",
+                    "pattern": "",
+                    "target": "books"
+                },
+                {
+                    "name": "bookdetail",
+                    "pattern": "detail/{bookID}",
+                    "target": "bookdetail"
+                }
+            ],
+            "targets": {
+                "books": {
+                    "name": "Books",
+                    "level": 0
+                },
+                "bookdetail": {
+                    "name": "BookDetail",
+                    "level": 1
+                }
+            }
+        }
+    }
+}

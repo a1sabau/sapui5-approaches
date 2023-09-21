@@ -1,0 +1,94 @@
+<mvc:View
+    controllerName="com.asabau.freestyle.controller.Books"
+    xmlns="sap.ui.table"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:u="sap.ui.unified"
+    xmlns:c="sap.ui.core"
+    xmlns:m="sap.m"
+    xmlns:data="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    height="100%"
+>
+    <m:Page
+        showHeader="false"
+        enableScrolling="false"
+        class="sapUiContentPadding"
+    >
+        <m:content>
+            <Table
+                rows="{/Books}"
+                selectionMode="MultiToggle"
+                visibleRowCount="7"
+                paste="onPaste"
+                ariaLabelledBy="title"
+                width="auto"
+                alternateRowColors="true"
+            >
+                <extension>
+                    <m:OverflowToolbar style="Clear">
+                        <m:Title
+                            xmlns="sap.m"
+                            xmlns:core="sap.ui.core"
+                            core:require="{ formatMessage: 'sap/base/strings/formatMessage' }"
+                            id="title"
+                            text="{
+                                parts: [
+                                    { path: 'i18nBooks>mainTitle' },
+                                    { path: '/Books/$count'}
+                                ], 
+                                formatter: 'formatMessage' 
+                            }"
+                        />
+                    </m:OverflowToolbar>
+                </extension>
+                <columns>
+                    <Column width="11rem">
+                        <m:Label text="{i18nBooks>colTitle}" />
+                        <template>
+                            <m:Text
+                                text="{title}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="11rem">
+                        <m:Label text="{i18nBooks>colAuthor}" />
+                        <template>
+                            <m:Text
+                                text="{author}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column
+                        width="6rem"
+                        hAlign="End"
+                    >
+                        <m:Label text="{i18nBooks>colStock}" />
+                        <template>
+                            <m:ObjectNumber
+                                state="{ path: 'stock', formatter: '.formatter.stockState' }"
+                                unit="{stock}"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="9rem">
+                        <m:Label text="{i18nBooks>colPrice}" />
+                        <template>
+                            <u:Currency value="{price}" />
+                        </template>
+                    </Column>
+                    <Column width="9rem">
+                        <m:Label text="{i18nBooks>colDetails}" />
+                        <template>
+                            <m:Button
+                                text="Show Details"
+                                press="navToBookDetail"
+                                data:bookID="{ID}"
+                            />
+                        </template>
+                    </Column>
+                </columns>
+            </Table>
+        </m:content>
+    </m:Page>
+</mvc:View>

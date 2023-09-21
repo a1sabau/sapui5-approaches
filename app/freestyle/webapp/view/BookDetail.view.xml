@@ -1,0 +1,80 @@
+<mvc:View
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    controllerName="com.asabau.freestyle.controller.BookDetail"
+>
+    <Page
+        title="Book: {title}"
+        showNavButton="true"
+        navButtonPress="navToBooks"
+    >
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <f:Form
+                    id="FormChange354"
+                    editable="true"
+                >
+                    <f:title>
+                        <core:Title text="Book Detail" />
+                    </f:title>
+                    <f:layout>
+                        <f:ResponsiveGridLayout
+                            labelSpanXL="3"
+                            labelSpanL="3"
+                            labelSpanM="3"
+                            labelSpanS="12"
+                            adjustLabelSpan="false"
+                            emptySpanXL="4"
+                            emptySpanL="4"
+                            emptySpanM="4"
+                            emptySpanS="0"
+                            columnsXL="1"
+                            columnsL="1"
+                            columnsM="1"
+                            singleContainerFullSize="false"
+                        />
+                    </f:layout>
+                    <f:formContainers>
+                        <f:FormContainer>
+                            <f:formElements>
+                                <f:FormElement label="Title">
+                                    <f:fields>
+                                        <Input
+                                            value="{title}"
+                                            id="title"
+                                        />
+                                    </f:fields>
+                                </f:FormElement>
+                                <f:FormElement label="Author">
+                                    <f:fields>
+                                        <Input
+                                            value="{author}"
+                                            id="author"
+                                        />
+                                    </f:fields>
+                                </f:FormElement>
+                                <f:FormElement label="Genre">
+                                    <f:fields>
+                                        <Select
+                                            id="genre"
+                                            selectedKey="{ID}"
+                                            items="{ path: '/Genres'}"
+                                        >
+                                            <core:Item
+                                                key="{ID}"
+                                                text="{name}"
+                                            />
+                                        </Select>
+                                    </f:fields>
+                                </f:FormElement>
+                            </f:formElements>
+                        </f:FormContainer>
+                    </f:formContainers>
+                </f:Form>
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>
